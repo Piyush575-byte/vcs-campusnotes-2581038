@@ -1,6 +1,7 @@
 
 notes = []
 
+
 def add_note():
     title = input("Enter note title: ").strip()
     content = input("Enter note content: ").strip()
@@ -15,7 +16,8 @@ def add_note():
 
     notes.append({"title": title, "content": content})
     print("Note added successfully!")
-    
+
+
 def view_notes():
     if not notes:
         print("No notes available.")
@@ -25,24 +27,35 @@ def view_notes():
         print(f"\n{index}. {note['title']}")
         print(note["content"])
 
+
+def display_menu():
+    print("\n===== CampusNotes =====")
+    print("1. Add Note")
+    print("2. View Notes")
+    print("3. Exit")
+
+
 def main():
     while True:
-        print("\n===== CampusNotes =====")
-        print("1. Add Note")
-        print("2. View Notes")
-        print("3. Exit")
-
+        display_menu()
         choice = input("Choose an option: ").strip()
 
-        if choice == "1":
-            add_note()
-        elif choice == "2":
-            view_notes()
-        elif choice == "3":
+        actions = {
+            "1": add_note,
+            "2": view_notes,
+        }
+
+        if choice == "3":
             print("Goodbye!")
             break
+
+        action = actions.get(choice)
+
+        if action:
+            action()
         else:
             print("Invalid choice. Try again.")
+
 
 if __name__ == "__main__":
     main()
