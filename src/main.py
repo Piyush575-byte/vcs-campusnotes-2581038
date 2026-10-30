@@ -9,9 +9,13 @@ def add_note():
         print("Title and content cannot be empty.")
         return
 
+    if any(note["title"].lower() == title.lower() for note in notes):
+        print("A note with this title already exists.")
+        return
+
     notes.append({"title": title, "content": content})
     print("Note added successfully!")
-
+    
 def view_notes():
     if not notes:
         print("No notes available.")
@@ -42,4 +46,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-notes.append({"title": title, "content": content})
